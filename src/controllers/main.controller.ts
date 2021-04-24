@@ -137,7 +137,7 @@ export class MainController {
 
     this.skylineContainer.addChild(skyline.sprite);
 
-    this.gameService.onFrameUpdate$.pipe(tap(n => skyline.updatePosition(n))).subscribe();
+    this.gameService.onFrameUpdate$.pipe(tap(delta => skyline.updatePosition(delta))).subscribe();
   }
 
   private renderObstacles() {
