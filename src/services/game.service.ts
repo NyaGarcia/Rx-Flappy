@@ -1,11 +1,11 @@
 import { KEYS, PARAMS, PHYSICS } from '../constants/game-config.constants';
 import { Subject, fromEvent, interval, timer } from 'rxjs';
-import { bufferTime, filter, scan, takeUntil } from 'rxjs/operators';
+import { bufferTime, filter, scan, share, takeUntil } from 'rxjs/operators';
 
 export class GameService {
   private stopGame$ = new Subject<void>();
 
-  private pressedKey$ = fromEvent<KeyboardEvent>(document, 'keydown');
+  private pressedKey$ = fromEvent<KeyboardEvent>(document, 'keydown').pipe(share());
 
   public onFrameUpdate$ = new Subject<number>().pipe(takeUntil(this.stopGame$)) as Subject<number>;
 
