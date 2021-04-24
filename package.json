@@ -1,0 +1,43 @@
+{
+  "name": "kiwi-bird",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "acorn": "^7.1.0",
+    "pixi.js": "^6.0.2",
+    "rxjs": "^6.4.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-angular": "^7.5.0",
+    "@types/node": "^11.9.5",
+    "browserify": "^16.2.3",
+    "commitlint": "^12.1.1",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-useref": "^3.1.6",
+    "husky": "^1.3.1",
+    "prettier": "^1.18.2",
+    "tsify": "^4.0.1",
+    "typescript": "^4.2.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

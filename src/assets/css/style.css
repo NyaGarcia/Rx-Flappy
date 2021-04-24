@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Pixelfont';
+  src: url('../assets/fonts/back-to-1982.regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Flappy';
+  src: url('../assets/fonts/FlappyBirdy.ttf') format('truetype');
+}
+
+body,
+html {
+  height: 100vh;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(#104b6b, #000);
+}
+
+canvas {
+  border-radius: 10px;
+}
+
+h2 {
+  color: #fff;
+  font-family: Flappy;
+  font-size: 50px;
+  text-align: center;
+}
+
+span {
+  color: #fff;
+  font-size: 30px;
+}
+
+.toolbar {
+  background-color: #212121;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.title {
+  color: #fff;
+  font-family: Flappy;
+  font-size: 60px;
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.score {
+  background-color: #212121;
+  color: white;
+  font-size: 2.5em;
+  font-family: Pixelfont;
+  margin-right: 20px;
+}
