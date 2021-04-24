@@ -32,7 +32,6 @@ export class GameService {
 
   public restart$ = this.pressedKey$.pipe(filter(({ code }) => code === KEYS.SPACE));
 
-  // TODO 1 Solution
   public easterEgg$ = this.pressedKey$.pipe(
     bufferTime(PARAMS.EASTER_EGG_BUFFER_TIME),
     filter(({ length }) => length > 6),

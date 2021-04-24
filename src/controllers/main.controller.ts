@@ -250,7 +250,6 @@ export class MainController {
   }
 
   private setEasterEgg() {
-    // TODO 2 Solution
     this.gameService.easterEgg$
       .pipe(
         tap(() => this.setEasterEggMessage(MESSAGES.EASTER_EGG)),
