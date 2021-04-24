@@ -34,7 +34,7 @@ export class GameService {
 
   public easterEgg$ = this.pressedKey$.pipe(
     bufferTime(PARAMS.EASTER_EGG_BUFFER_TIME),
-    filter(({ length }) => length > 6),
+    filter(({ length }) => length > PARAMS.EASTER_EGG_BUFFER_LENGTH),
     takeUntil(this.stopGame$),
   );
 }
