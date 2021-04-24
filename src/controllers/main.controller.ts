@@ -171,8 +171,12 @@ export class MainController {
 
   private updateScore() {
     this.gameService.score$
-      .pipe(tap(score => (this.gui.scoreboard.innerHTML = `${score}`)))
+      .pipe(tap(score => this.printScore(score)))
       .subscribe();
+  }
+  
+  private printScore(score: number) {
+    this.gui.scoreboard.innerHTML = `${score}`
   }
 
   private addCollisions(): void {
@@ -216,8 +220,12 @@ export class MainController {
     this.gameService.stopGame();
 
     this.renderGameOverMessage();
-    this.resetScore();
+    this.printScore(0);
 
+    this.restartGame();
+  }
+
+  private restartGame() {
     this.gameService.restart$
       .pipe(
         first(),
@@ -235,10 +243,6 @@ export class MainController {
     gameOverSprite.scale.set(0.6);
 
     this.app.stage.addChild(gameOverSprite);
-  }
-
-  private resetScore() {
-    this.gui.scoreboard.innerHTML = `0`;
   }
 
   private destroy() {
