@@ -8,7 +8,7 @@ import {
   PHYSICS,
   SPRITE_URLS,
 } from '../constants/game-config.constants';
-import { delay, filter, first, tap } from 'rxjs/operators';
+import { delay, filter, first, map, tap } from 'rxjs/operators';
 
 import { GameService } from '../services/game.service';
 import { Pipe } from '../models/pipe.model';
@@ -106,13 +106,23 @@ export class MainController {
 
     this.app.stage.setChildIndex(this.skylineContainer, 1);
 
-    this.gameService.skylineUpdate$.pipe(tap(() => this.createSkyline())).subscribe();
+    this.gameService.skylineUpdate$
+      .pipe(
+        map(() => this.getLastSkyline()),
+        filter(this.isNewSkylineNeeded),
+        tap(lastSkyline => this.createSkylinePiece(lastSkyline.position.x + lastSkyline.width)),
+      )
+      .subscribe();
   }
 
   private createInitialSkyline() {
     for (let i = 0; i < 3; i++) {
       this.createSkylinePiece(i * 500);
     }
+  }
+
+  private isNewSkylineNeeded(lastSkyline: PIXI.DisplayObject) {
+    return lastSkyline.position.x <= CANVAS_SIZE.WIDTH;
   }
 
   private createSkyline(): void {
@@ -170,13 +180,11 @@ export class MainController {
   }
 
   private updateScore() {
-    this.gameService.score$
-      .pipe(tap(score => this.printScore(score)))
-      .subscribe();
+    this.gameService.score$.pipe(tap(score => this.printScore(score))).subscribe();
   }
-  
+
   private printScore(score: number) {
-    this.gui.scoreboard.innerHTML = `${score}`
+    this.gui.scoreboard.innerHTML = `${score}`;
   }
 
   private addCollisions(): void {
